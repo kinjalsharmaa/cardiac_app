@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.2em;
+            margin: 12px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #00A9F4;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 169, 244, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #0088cc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 136, 204, 0.2);
+        }
+
+        .btn-back {
+            background-color: #4CAF50;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .btn-back:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(56, 142, 60, 0.2);
+        }
+
+        .notification {
+            background-color: #FFEBEE;
+            color: #D32F2F;
+            padding: 18px;
+            margin-top: 20px;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(255, 205, 210, 0.2);
+        }
+
+        .notification p {
+            margin-bottom: 12px;
+        }
+
+        .notification button {
+            background-color: #D32F2F;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .notification button:hover {
+            background-color: #C2185B;
+        }
+
+        /* For better responsiveness */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Cardiac Dashboard</h1>
+        <button onclick="window.location.href='/graph'" class="btn-primary">View Blood Pressure Graph</button>
+        <button onclick="window.location.href='/sos'" class="btn-primary">SOS</button>
+        <br><br>
+        <!-- Back to Login Button -->
+        <button onclick="window.location.href='/'" class="btn-back">Back to Login</button>
+        
+        <!-- Notification Popup -->
+        <div id="bp-notification" class="notification">
+            <p>Your blood pressure is increasing. Please visit our hospital immediately!</p>
+            <button id="close-notification">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Simulate a condition where the notification appears
+        setTimeout(() => {
+            document.getElementById('bp-notification').style.display = 'block';
+        }, 3000); // Notification appears after 3 seconds for demo purposes
+
+        // Close notification button functionality
+        document.getElementById('close-notification')?.addEventListener('click', function() {
+            document.getElementById('bp-notification').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+
